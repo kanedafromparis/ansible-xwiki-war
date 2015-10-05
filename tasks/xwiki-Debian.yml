@@ -78,11 +78,11 @@
   notify: 
    - stop tomcat
 
-- name: create the xwiki hibernate configuration file
+- name: update the tomcat configuration file
   become: true
   template: 
     src: "xwiki-tomcat.j2" 
-    dest: "/etc/defaut/tomcat"
+    dest: "/etc/default/tomcat7"
    
 - name: create the xwiki configuration file
   become: true
