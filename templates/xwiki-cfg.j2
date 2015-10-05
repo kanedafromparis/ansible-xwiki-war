@@ -1,0 +1,64 @@
+
+xwiki.store.cache.capacity=1000
+xwiki.store.attachment.hint=file
+xwiki.store.attachment.versioning.hint=file
+xwiki.store.attachment.recyclebin.hint=file
+
+
+xwiki.authentication.cookiedomains=
+xwiki.authentication.ldap.base_DN=
+xwiki.authentication.ldap.bind_DN=cn={0},department=USER,department=INFORMATIK,department=1230,o=MP
+xwiki.authentication.ldap.bind_pass={1}
+xwiki.authentication.ldap.fields_mapping=last_name=sn,first_name=givenName,email=mail
+xwiki.authentication.ldap.port=389
+xwiki.authentication.ldap.server=127.0.0.1
+xwiki.authentication.ldap.trylocal=1
+xwiki.authentication.ldap.update_user=1
+xwiki.authentication.logoutpage=(/|/[^/]+/|/wiki/[^/]+/)logout/*
+xwiki.authentication.unauthorized_code=200
+xwiki.authentication.validationKey={{xwiki_validation_key}}
+xwiki.authentication.encryptionKey={{xwiki_encryption_key}}
+
+#xwiki.superadminpassword={{xwiki_super_admin_password}}
+xwiki.backlinks=1
+xwiki.defaultbaseskin=
+xwiki.defaultskin=flamingo
+xwiki.editcomment.mandatory=0
+xwiki.editcomment=1
+xwiki.encoding=UTF-8
+xwiki.inactiveuser.allowedpages=
+xwiki.plugin.image.cache.capacity=30
+xwiki.rendering.syntaxes = xwiki/2.0, xwiki/2.1
+xwiki.section.depth=2
+xwiki.section.edit=1
+xwiki.stats.default=0
+xwiki.store.migration=1
+xwiki.tags=1
+xwiki.title.compatibility=1
+xwiki.plugins=\
+  com.xpn.xwiki.monitor.api.MonitorPlugin,\
+  com.xpn.xwiki.plugin.skinx.JsSkinExtensionPlugin,\
+  com.xpn.xwiki.plugin.skinx.JsSkinFileExtensionPlugin,\
+  com.xpn.xwiki.plugin.skinx.JsResourceSkinExtensionPlugin,\
+  com.xpn.xwiki.plugin.skinx.CssSkinExtensionPlugin,\
+  com.xpn.xwiki.plugin.skinx.CssSkinFileExtensionPlugin,\
+  com.xpn.xwiki.plugin.skinx.CssResourceSkinExtensionPlugin,\
+  com.xpn.xwiki.plugin.skinx.LinkExtensionPlugin,\
+  com.xpn.xwiki.plugin.feed.FeedPlugin,\
+  com.xpn.xwiki.plugin.mail.MailPlugin,\
+  com.xpn.xwiki.plugin.packaging.PackagePlugin,\
+  com.xpn.xwiki.plugin.svg.SVGPlugin,\
+  com.xpn.xwiki.plugin.charts.ChartingPlugin,\
+  com.xpn.xwiki.plugin.fileupload.FileUploadPlugin,\
+  com.xpn.xwiki.plugin.image.ImagePlugin,\
+  com.xpn.xwiki.plugin.zipexplorer.ZipExplorerPlugin,\
+  com.xpn.xwiki.plugin.lucene.LucenePlugin,\
+  com.xpn.xwiki.plugin.diff.DiffPlugin,\
+  com.xpn.xwiki.plugin.rightsmanager.RightsManagerPlugin,\
+  com.xpn.xwiki.plugin.jodatime.JodaTimePlugin,\
+  com.xpn.xwiki.plugin.scheduler.SchedulerPlugin,\
+  com.xpn.xwiki.plugin.mailsender.MailSenderPlugin,\
+  com.xpn.xwiki.plugin.activitystream.plugin.ActivityStreamPlugin, \
+  com.xpn.xwiki.plugin.watchlist.WatchListPlugin, \
+  com.xpn.xwiki.plugin.tag.TagPlugin, \
+  com.xpn.xwiki.plugin.applicationmanager.ApplicationManagerPlugin

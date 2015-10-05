@@ -1,0 +1,11 @@
+---
+# defaults file for ansible-xwiki-tomcat
+
+tomcat_manager_xwiki_password_set_random_value: true
+
+#
+xwiki_Admin_password: 
+xwiki_: 
+xwiki_context_env_permanentDirectory: "{{xwiki_context_env_permanentDirectory_default}}"
+xwiki_version: "{{xwiki_version_default}}"
+xwiki_war_url: "{{xwiki_war_url_default}}"
