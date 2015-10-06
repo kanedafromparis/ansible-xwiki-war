@@ -63,9 +63,15 @@
   notify: 
    - stop tomcat
 
+- name : In order to not dowload again
+  stat: 
+    path: "/usr/share/xwiki/{{xwiki_version}}/WEB-INF/mysql-connector-java-{{ mysql_jdbc_drivers_version }}.jar"
+  register: xwiki_jdkc_downloaded
+  
 #Todo change into parameter version
 - name: copy jdbcdriver
   become: yes
+  when: xwiki_jdkc_downloaded.stat.exists == false
   get_url: 
     url: "{{ansible_local.xwiki_db.dtb.xwiki_db_jdbc_drivers_download_URL}}"
     dest: "/usr/share/xwiki/{{xwiki_version}}/WEB-INF/lib"
