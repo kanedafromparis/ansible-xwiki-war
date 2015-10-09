@@ -1,0 +1,13 @@
+---
+util_package_state: "{{ util_package_state_debian }}"
+
+util_package_states:
+  - installed
+  - latest
+  - absent
+
+#util_package_list_ansible_deps:
+#  - 
+xwiki_context_env_permanentDirectory_default: "/var/lib/xwiki/xwiki-workdir"
+xwiki_version_default: "xwiki-enterprise-web-6.4.5"
+xwiki_war_url_default: "http://download.forge.ow2.org/xwiki/{{xwiki_version_default}}.war"

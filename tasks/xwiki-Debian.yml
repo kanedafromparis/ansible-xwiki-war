@@ -1,0 +1,109 @@
+---
+#
+#  FAILED! => {"changed": false, "failed": true, "msg": "Traceback (most recent call last):\r\n  File \".../ansible-tmp-1444041449.28-104825337152891/group\", line 2252, in <module>\r\n    main()\r\n  File \"/home/csabourdin/.ansible/tmp/ansible-tmp-1444041449.28-104825337152891/group\", line 394, in main\r\n    if user.distribution:\r\nNameError: global name 'user' is not defined\r\n", "parsed": false}
+#
+# - name: create  xwiki
+#   become: true
+#   group:
+#     name: "xwiki"
+#     #gid: 540
+#     system: yes
+#     state: "present"
+# 
+# - name: create user and group xwiki
+#   become: true
+#   user: 
+#     name: "xwiki"
+#     #group: "xwiki"
+#     groups: "xwiki,tomcat"
+#     uid: 540
+#     system: yes
+#     createhome: no
+#     state: "present"
+#     comment: "this is the xwiki user/groupes"
+    
+- name: create directory
+  become: true
+  file:
+    state: "directory"
+    dest: "/usr/share/xwiki/{{xwiki_version}}"
+    #owner: "xwiki"
+    #group: "tomcat"
+    #mode: 0755
+
+- name: create directory (bis)
+  become: true
+  file:
+    state: "directory"
+    dest: "{{xwiki_context_env_permanentDirectory}}"
+    #owner: "tomcat"
+    #group: "tomcat"
+    mode: 0777
+
+- name : In order to not dowload again
+  stat: 
+    path: "/usr/share/xwiki/{{xwiki_version}}/WEB-INF"
+  register: xwiki_version_unziped
+  
+- name: Donwload war
+  become: true
+  when: xwiki_version_unziped.stat.exists == false
+  unarchive: 
+    src: "{{xwiki_war_url}}"
+    dest: "/usr/share/xwiki/{{xwiki_version}}"
+    
+    #owner: "tomcat"
+    copy: no
+
+- name: create the xwiki context configuration file (Cree la configuration)
+  become: true
+  template: 
+    src: "xwiki-context-xml.j2" 
+    dest: "/etc/tomcat7/Catalina/localhost/xwiki.xml"
+  notify: 
+   - stop tomcat
+
+#Todo change into parameter version
+- name: copy jdbcdriver
+  become: yes
+  get_url: 
+    url: "{{ansible_local.xwiki_db.dtb.xwiki_db_jdbc_drivers_download_URL}}"
+    dest: "/usr/share/xwiki/{{xwiki_version}}/WEB-INF/lib"
+    
+- name: create the xwiki hibernate configuration file
+  become: true
+  template: 
+    src: "xwiki-hibernate-xml.j2" 
+    dest: "/usr/share/xwiki/{{xwiki_version}}/WEB-INF/hibernate.cfg.xml"
+  notify: 
+   - stop tomcat
+
+- name: create the xwiki hibernate configuration file
+  become: true
+  template: 
+    src: "xwiki-tomcat.j2" 
+    dest: "/etc/defaut/tomcat"
+   
+- name: create the xwiki configuration file
+  become: true
+  template: 
+    src: "xwiki-cfg.j2" 
+    dest: "/usr/share/xwiki/{{xwiki_version}}/WEB-INF/xwiki.cfg"
+
+- name: create the xwiki configuration file
+  become: true
+  template: 
+    src: "xwiki-properties.j2" 
+    dest: "/usr/share/xwiki/{{xwiki_version}}/WEB-INF/xwiki.properties"
+
+- name: create the xwiki link in order to use only xwiki and not the version path
+  become: true
+  file: 
+    src: "/usr/share/xwiki/{{xwiki_version}}"
+    dest: "/usr/share/xwiki/default"
+    #owner: "tomcat"
+    #group: "tomcat"
+    state: "link"
+  notify: 
+   - start tomcat
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/manager" docBase="/usr/share/xwiki/default" antiResourceLocking="false" privileged="true">
+<!-- RFC ;-) 
+  <Environment name="xwiki/config/environment.permanentDirectory" value="{{xwiki_context_env_permanentDirectory}}" type="java.lang.String"/>
+		<Environment name="xwiki/config/xwiki.authentication.encryptionKey" value="{{xwiki_encryption_key}}" type="java.lang.String"/>
+	<Environment name="xwiki/config/xwiki.authentication.validationKey" value="{{xwiki_validation_key}}" type="java.lang.String"/>
+	< !- - <Environment name="xwiki/config/xwiki.superadminpassword" value="{{xwiki_super_admin_password}}" type="java.lang.String"/> - - >
+
+	<Environment name="xwiki/config/xwiki.store.cache.capacity" value="1000" type="java.lang.String"/>
+	<Environment name="xwiki/config/xwiki.store.attachment.hint" value="file" type="java.lang.String"/>
+	<Environment name="xwiki/config/xwiki.store.attachment.versioning.hint" value="file" type="java.lang.String"/>
+	<Environment name="xwiki/config/xwiki.store.attachment.recyclebin.hint" value="file" type="java.lang.String"/>
+	- - >
+	<Resource auth="Container" 
+		driverClassName="{{ansible_local.xwiki_db.dtb.xwiki_db_jdbc_drivers_class}}" maxActive="20" maxIdle="10" maxWait="-1" name="xwiki/db" url="{{ansible_local.xwiki_db.dtb.xwiki_jdbc_url}}" password="{{ansible_local.xwiki_db.dtb.xwiki_db_user}}" username="{{ansible_local.xwiki_db.dtb.xwiki_db_password}}" type="javax.sql.DataSource"/>
+		-->
+</Context>
